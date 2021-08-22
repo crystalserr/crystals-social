@@ -93,19 +93,21 @@ export class AddComponent implements OnInit {
 
     // Con esto detecto el cambio de usuario
     this.messageForm.get('receiver').valueChanges.subscribe((value) => {
-      this._userService.getUser(value).subscribe(
-        response => {
-          //console.log(response.user);
-          this.replyUser = response.user;
-        }, error => {
-          this.mensajeError = error.error.message;
-          console.log(<any>error);
+      if (value) {
+        this._userService.getUser(value).subscribe(
+          response => {
+            //console.log(response.user);
+            this.replyUser = response.user;
+          }, error => {
+            this.mensajeError = error.error.message;
+            console.log(<any>error);
 
-          if (this.mensajeError != null) {
-            this.status = 'error';
+            if (this.mensajeError != null) {
+              this.status = 'error';
+            }
           }
-        }
-      );
+        );
+      }
       //console.log(value);
     });
 
@@ -129,6 +131,7 @@ export class AddComponent implements OnInit {
         if (response.message) {
           this.status = 'success';
           this.messageForm.reset();
+          this.replyUser = undefined;
         }
       },
       error => {

@@ -19,8 +19,8 @@ var transporter = require('../config/mailer').transporter;
 
 // Registro
 function saveUser(req, res) {
-    var params = req.body;
-    var user = new User();
+    let params = req.body;
+    let user = new User();
 
     if (params.name && params.surname && params.nick &&
         params.email && params.password) {
@@ -88,7 +88,6 @@ async function sendMailRegister(user) {
         from: '"Registro completado" <lucia.serranoperez01@gmail.com>', // sender address
         to: user.email, // list of receivers
         subject: "Registro completado", // Subject line
-        //text: "Hello world?", // plain text body
         html: `
             <p>El <b>registro</b> se ha completado correctamente</p>
             <p>Puedes iniciar sesión clickando en el siguiente <a href='http://localhost:4200/login'> enlace </a></p>
@@ -115,10 +114,10 @@ async function sendMailForgotPassword(user, token) {
 
 // metodo que envia el mail de recuperación de contraseña
 function forgotPassword(req, res) {
-    var params = req.body;
+    let params = req.body;
 
     if (params.email) {
-        var email = params.email; // recogemos el mail del formulario
+        let email = params.email; // recogemos el mail del formulario
         User.findOne({ email: email }, (err, user) => {
 
             if (err) return res.status(500).send({ message: 'Error en la peticion — forgotPassword'});
@@ -146,13 +145,13 @@ function forgotPassword(req, res) {
 
 // nueva contraseña - cuando el usuario olvidó su contraseña anterior
 function newPassword(req, res) {
-    var userId = req.user.sub; // esto lo obtengo con el token
-    var params = req.body;
+    let userId = req.user.sub; // esto lo obtengo con el token
+    let params = req.body;
 
     // la nueva contraseña
     if (params.password && userId) {
 
-        var newPassword = params.password; // recogemos la nueva contraseña
+        let newPassword = params.password; // recogemos la nueva contraseña
         User.findOne({ '_id': userId }, (err, user) => {
 
             if (err) return res.status(500).send({ message: 'Error en la peticion — newPassword'});
@@ -192,8 +191,8 @@ function newPassword(req, res) {
 
 // cambia la contraseña cuando el usuario esta loggeado
 function changePassword(req, res) {
-    var userId = req.params.id; // esto lo paso por la url
-    var params = req.body;
+    let userId = req.params.id; // esto lo paso por la url
+    let params = req.body;
 
     if (userId != req.user.sub) {
       return res.status(500).send({ message: 'No tienes permiso para actualizar los datos del usuario' });
@@ -202,7 +201,7 @@ function changePassword(req, res) {
     // la nueva contraseña
     if (params.password && userId) {
 
-        var newPassword = params.password; // recogemos la nueva contraseña
+        let newPassword = params.password; // recogemos la nueva contraseña
         User.findOne({ '_id': userId }, (err, user) => {
 
             if (err) return res.status(500).send({ message: 'Error en la peticion — changePassword'});
@@ -241,10 +240,10 @@ function changePassword(req, res) {
 
 // Login
 function loginUser(req, res) {
-    var params = req.body;
+    let params = req.body;
 
-    var email = params.email;
-    var password = params.password;
+    let email = params.email;
+    let password = params.password;
 
     User.findOne({ email: email }, (err, user) => {
 
@@ -279,7 +278,7 @@ function loginUser(req, res) {
 function getUser(req, res) {
     // datos por url - params
     // datos por post o put - body
-    var userId = req.params.id;
+    let userId = req.params.id;
 
     User.findById(userId, (err, user) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion — GetUser' });
@@ -301,7 +300,7 @@ function getUser(req, res) {
 function getUserNick(req, res) {
     // datos por url - params
     // datos por post o put - body
-    var userNick = req.params.nick;
+    let userNick = req.params.nick;
 
     User.findOne({ nick: userNick }, (err, user) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion — GetUserNick' });
@@ -316,13 +315,13 @@ function getUserNick(req, res) {
 
 // funcion que devuelve la informacion de un seguimiento entre dos usuarios
 async function followThisUser(identity_user_id, user_id) {
-    var following = await Follow.findOne({ "user": identity_user_id, "followed": user_id }).exec().then((follow) => {
+    let following = await Follow.findOne({ "user": identity_user_id, "followed": user_id }).exec().then((follow) => {
         return follow;
     }).catch((err) => {
         return handleError(err);
     });
 
-    var followed = await Follow.findOne({ "user": user_id, "followed": identity_user_id }).exec().then((follow) => {
+    let followed = await Follow.findOne({ "user": user_id, "followed": identity_user_id }).exec().then((follow) => {
         return follow;
     }).catch((err) => {
         return handleError(err);
@@ -336,9 +335,9 @@ async function followThisUser(identity_user_id, user_id) {
 
 // Listar — todos los usuarios | este listado estará paginado
 function getUsers(req, res) {
-    var identity_user_id = req.user.sub; // id del usuario loggeado
+    let identity_user_id = req.user.sub; // id del usuario loggeado
 
-    var page = 1;
+    let page = 1;
     if (req.params.page) {
         page = req.params.page;
     }
@@ -361,7 +360,7 @@ function getUsers(req, res) {
 }
 
 function getAllUsers(req, res) {
-    var identity_user_id = req.user.sub; // id del usuario loggeado
+    let identity_user_id = req.user.sub; // id del usuario loggeado
 
     User.find().sort('nick').exec((err, users) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion — getAllUsers' });
@@ -378,8 +377,8 @@ function getAllUsers(req, res) {
 // followed — que nos siguen
 async function followUserIds(user_id) {
 
-    var following = await Follow.find({ "user": user_id }).select({ '_id': 0, '__v': 0, 'user': 0 }).exec().then((follows) => {
-        var follows_clean = [];
+    let following = await Follow.find({ "user": user_id }).select({ '_id': 0, '__v': 0, 'user': 0 }).exec().then((follows) => {
+        let follows_clean = [];
 
         follows.forEach((follow) => {
             follows_clean.push(follow.followed);
@@ -390,8 +389,8 @@ async function followUserIds(user_id) {
         return handleError(err);
     });
 
-    var followed = await Follow.find({ "followed": user_id }).select({ '_id': 0, '__v': 0, 'followed': 0 }).exec().then((follows) => {
-        var follows_clean = [];
+    let followed = await Follow.find({ "followed": user_id }).select({ '_id': 0, '__v': 0, 'followed': 0 }).exec().then((follows) => {
+        let follows_clean = [];
 
         follows.forEach((follow) => {
             follows_clean.push(follow.user);
@@ -409,7 +408,7 @@ async function followUserIds(user_id) {
 }
 
 function getCounters(req, res) {
-    var user_id = req.user.sub;
+    let user_id = req.user.sub;
     
     if (req.params.id) {
         user_id = req.params.id;
@@ -421,19 +420,19 @@ function getCounters(req, res) {
 }
 
 async function getCountFollow(user_id) {
-    var following = await Follow.countDocuments({ "user": user_id }).exec().then((count) => {
+    let following = await Follow.countDocuments({ "user": user_id }).exec().then((count) => {
         return count;
     }).catch((err) => {
         return handleError(err);
     });
 
-    var followed = await Follow.countDocuments({ "followed": user_id }).exec().then((count) => {
+    let followed = await Follow.countDocuments({ "followed": user_id }).exec().then((count) => {
         return count;
     }).catch((err) => {
         return handleError(err);
     });
 
-    var publications = await Publication.countDocuments({ "user": user_id }).exec().then((count) => {
+    let publications = await Publication.countDocuments({ "user": user_id }).exec().then((count) => {
         return count;
     }).catch((err) => {
         return handleError(err);
@@ -449,8 +448,8 @@ async function getCountFollow(user_id) {
 // Actualizar datos de un usuario
 // Añadimos el control de usuarios duplicados
 function updateUser(req, res) {
-    var userId = req.params.id;
-    var update = req.body;
+    let userId = req.params.id;
+    let update = req.body;
 
     // Eliminar la propiedad password — es recomendable tener en un método separado la actualización de la contraseña
     delete update.password;
@@ -480,7 +479,7 @@ function updateUser(req, res) {
             });
         }*/
 
-        var user_isset = false;
+        let user_isset = false;
         users.forEach((user) => {
             if (user._id != userId) user_isset = true;
         });
@@ -499,15 +498,15 @@ function updateUser(req, res) {
 
 // Subir archivos de imagen | avatar de usuario
 function uploadImage(req, res) {
-    var userId = req.params.id; 
+    let userId = req.params.id; 
 
     if (req.files) {
         // Si estamos enviando algún fichero
-        var file_path = req.files.image.path;
+        let file_path = req.files.image.path;
         
-        var file_name = file_path.split('\\')[2]; // en el server es asi | en win va \\ asi
+        let file_name = file_path.split('\\')[2]; // en el server es asi | en win va \\ asi
         console.log(file_path + "   " + file_name);
-        var file_ext = file_name.split('\.')[1];
+        let file_ext = file_name.split('\.')[1];
 
         console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
 
@@ -540,9 +539,9 @@ function removeFilesOfUploads(res, file_path, message) {
 }
 
 function getImageFile(req, res) {
-    var image_file = req.params.imageFile;
+    let image_file = req.params.imageFile;
 
-    var path_file = './uploads/users/' + image_file;
+    let path_file = './uploads/users/' + image_file;
 
     fs.exists(path_file, (exists) => {
         if (exists) {
