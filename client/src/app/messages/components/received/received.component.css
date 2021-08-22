@@ -1,0 +1,148 @@
+
+.mi-contenedor{
+  border-radius: 15px;
+  background-color: #f8f9fad5 !important;
+  padding: 25px;
+}
+
+div.titular {
+  padding: 0px 5px 20px 5px;
+}
+
+div.titular h3 {
+  font-family: 'DM Serif Display', serif;
+  letter-spacing: 5px;
+}
+
+div.mi-alerta {
+  border-radius: 15px;
+  background-color: white;
+  padding: 20px 10px;
+  margin: 20px 0px;
+}
+
+
+div.message-card {
+  border-radius: 15px;
+  background-color: #ffffff;
+  height: auto;
+  padding: 3px;
+  width: 97%;
+  margin: 10px;
+}
+
+
+div.image-user {
+  height: auto;
+  margin: 0px 20px 0px 0px;
+}
+
+div.image-user img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+div.user-name {
+  color: #212529;
+  height: auto;
+}
+
+h5.nickname {
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 10px 5px 0px;
+  font-family: 'DM Serif Display', serif;
+}
+
+span.verified {
+  color: rgb(36, 202, 202);
+  padding: 3px;
+}
+
+span.date {
+  /*margin-left: 5px;*/
+  padding: 5px 0px;
+  color: gray;
+}
+
+span.sended {
+  padding: 5px 10px;
+  margin: 0px 10px;
+  border-left: 1px solid #343434;
+}
+
+span.sended a {
+  padding: 0px 3px;
+  text-decoration: none;
+  color: rgb(141, 101, 220);
+  font-family: 'DM Serif Display', serif;
+  letter-spacing: 1px;
+}
+
+p.text {
+  font-size: 16px;
+  margin: 0;
+  text-align: left;
+  padding: 13px 0px 5px 0px;
+}
+
+button.reply {
+  width: 120px;
+  margin: 0px 0px 0px 10px;
+}
+
+button.reply span {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 750px) {
+  button.reply span {
+    display: none;
+  }
+  button.reply {
+    width: auto;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+}
+
+@media screen and (max-width: 550px) {
+
+  div.card-body {
+    flex-wrap: wrap;
+  }
+
+  .buttons {
+    width: 100%;
+    /*background-color: white;
+    border-radius: 20px;
+    padding: 10px 20px !important;
+    margin-top: 15px;*/
+  }
+
+  p.text {
+    font-size: 14px;
+  }
+
+  h5.nickname{
+    font-size: 16px;
+  }
+
+  span.date {
+    font-size: 12px;
+  }
+
+  div.card-body {
+    padding: 10px;
+  }
+}
+

@@ -1,0 +1,99 @@
+<div class="main">
+
+  <div class="edit-form">
+
+    <div class="alert alert-success" *ngIf="status == 'success' ">
+      <a>Datos de usuario actualizados correctamente</a>.
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error' ">
+      {{mensajeError}}
+    </div>
+
+    <h1 class="titulo mb-4">mis datos</h1>
+
+    <form [formGroup]="editForm" (ngSubmit)="onEdit()"> <!-- aqui tengo que meter el form  group si hago los forms reactivos-->
+      <div class="form-group">
+        <input type="text" name="name" id="name" placeholder="NOMBRE" formControlName="name" required>
+
+        <!-- validaciones campo name -->
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+          <small class="text-danger"
+            *ngIf="name.errors?.required">
+            El nombre es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <input type="text" name="surname" id="surname" placeholder="APELLIDOS" formControlName="surname" required>
+
+        <!-- validaciones campo surname -->
+        <div *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+          <small class="text-danger"
+            *ngIf="surname.errors?.required">
+            Los apellidos son obligatorios.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <input type="text" name="nick" id="nick" placeholder="NICK" formControlName="nick" required>
+
+        <!-- validaciones campo nick -->
+        <div *ngIf="nick.invalid && (nick.dirty || nick.touched)">
+          <small class="text-danger"
+            *ngIf="nick.errors?.required">
+            El nick es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group mt-3 mail">
+        <input type="mail" name="mail" id="mail" placeholder="E-MAIL" formControlName="email" required>
+
+        <!-- validaciones campo email -->
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <small class="text-danger"
+            *ngIf="email.errors?.required">
+            El email es obligatorio.
+          </small>
+          <small class="text-danger"
+              *ngIf="email.errors?.pattern">
+              El email no es correcto.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+
+        <label for="upload-file" class="mi-label">Sube tu foto de perfil</label>
+        <input class="form-control upload-file" name="upload-file" type="file" id="formFile" (change)="fileChangeEvent($event)" placeholder="Sube tu foto de perfil">
+
+        <!--<div *ngIf="user.image">
+          <img src="{{url + 'get-image-user/' + user.image }}">
+        </div>-->
+
+        <!--validaciones campo password
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+
+          <small class="text-danger"
+            *ngIf="password.errors?.required">
+            La contraseña es obligatoria.
+          </small>
+          <small class="text-danger"
+              *ngIf="password.errors?.minlength">
+              <p>La contraseña no tiene {{registerForm.get('password').errors.minlength.requiredLength}} caracteres mínimo.</p>
+          </small>
+        </div>-->
+      </div>
+
+      <div class="form-group mt-5">
+        <button type="submit" class="btn btn-outline-dark my-button" [disabled]="!editForm.valid">ACTUALIZAR</button>
+      </div>
+      <!--<hr>
+      <button class="btn btn-outline-danger my-button"> <fa-icon [icon]="faGoogle"></fa-icon> Sing up with google</button>-->
+    </form>
+
+  </div>
+
+</div>

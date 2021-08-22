@@ -1,0 +1,70 @@
+<div class="body">
+
+  <div class="container-fluid mi-contenedor">
+
+    <div class="row titular">
+      <div class="col-lg-12 d-flex flex-wrap flex-row justify-content-between">
+        <h3 class="p-0 m-0">Mensajes enviados</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="messages">
+
+        <!-- listado de mensajes enviados -->
+
+        <div class="row p-0 d-flex flex-column align-items-center justify-content-center pt-2"
+          *ngIf="messages && messages.length != 0 ; else noMessages">
+
+          <!-- tarjetas de mensajes -->
+          <div *ngFor="let message of messages" class="message-card">
+
+            <div class="card-body d-flex justify-content-between">
+              <div class="user w-100 d-flex align-items-center">
+                <div class="image-user align-self-start">
+                  <a [routerLink]="['/perfil', message.emitter._id]">
+                    <img *ngIf="message.emitter.image" src="{{ url + 'get-image-user/' + message.emitter.image }}"
+                      alt="user_image">
+                  </a>
+                </div>
+
+                <div class="user-name">
+                  <div class="d-flex flex-row flex-wrap">
+                    <h5 [routerLink]="['/perfil', message.emitter._id]" class="nickname">{{ message.emitter.nick }} <span
+                        class="verified" *ngIf="message.emitter.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i>
+                      </span></h5>
+                    <span class="date">Hace {{ (message.created_at | amFromUnix) | amLocale:'es' | amTimeAgo: true }} </span>
+                    <span class="sended"> Enviado a <a class="p-0"
+                        [routerLink]="['/perfil', message.receiver._id]">{{message.receiver.nick}}</a> </span>
+                  </div>
+                  <div class="">
+                    <p class="text">{{ message.text }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- fin tarjetas de mensajes -->
+          </div>
+
+          <div class="row p-2 pb-3">
+            <div class="col-xl-12 d-flex flex-row align-items-center justify-content-center">
+
+              <button class="btn btn-outline-dark d-block m-1" [class.disabled]="page <= 1 || !page" [routerLink]="['/mensajes/enviados/', prev_page]">Anterior</button>
+              <button class="btn btn-outline-dark d-block m-1" [class.disabled]="pages == page || pages == 1" [routerLink]="['/mensajes/enviados', next_page]">Siguiente</button>
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<ng-template #noMessages>
+  <div class="mi-alerta d-flex justify-content-center align-content-center">
+    <span class="text-center">No hay mensajes que mostrar</span>
+  </div>
+</ng-template>

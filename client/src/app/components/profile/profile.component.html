@@ -1,0 +1,94 @@
+<div class="body">
+
+  <div class="container-fluid mi-contenedor p-2">
+    <div class="row titular">
+      <div class="col-xl-8 col-lg-6 p-0 px-3 d-flex flex-wrap flex-row justify-content-between">
+        <h2 class="p-0 m-0">Perfil</h2>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-xl-8 col-lg-6 p-0 d-flex flex-column justify-content-start align-items-center">
+
+        <!-- profile card -->
+        <div class="profile-card" *ngIf="user">
+
+          <div class="d-flex user-info justify-content-center align-items-center flex-wrap gap-3">
+            <div class="user-image m-0">
+              <img class="d-block" src="{{ url + 'get-image-user/' + user.image }}" alt="user-image" *ngIf="user.image">
+            </div>
+
+            <div class="user-name">
+
+              <div class="user-nick d-flex flex-wrap">
+                <p class="nickname m-0 me-3">{{ user.nick }} <span class="verified" *ngIf="user.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i> </span> </p>
+                <span *ngIf="followed" class="badge bg-secondary m-1">Te sigue</span>
+              </div>
+
+              <!--<p class="nickname m-0">{{ user.nick }} <span class="verified" *ngIf="user.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i> </span> </p>-->
+              <p class="fullname">{{ user.name + ' ' + user.surname }}</p>
+
+              <!-- botones de seguir y dejar de seguir-->
+              <div class="buttons d-flex justify-content-between" *ngIf="user._id != identity._id"> <!-- para que no muestre los botones de seguir en el propio usuario loggeado-->
+                <button (click)="followUser(user._id)" class="btn btn-sm boton-seguir" *ngIf="!following">Seguir</button>
+                <button (click)="unfollowUser(user._id)" class="btn btn-success btn-sm" *ngIf="following"
+                        [class.btn-danger]="user._id == followUserOver"
+                        (mouseenter)="mouseEnter(user._id)"
+                        (mouseleave)="mouseLeave()" >
+                  <span *ngIf="user._id == followUserOver; else following">Dejar de seguir</span>
+
+                  <ng-template #following>
+                    <span>Siguiendo</span>
+                  </ng-template>
+                </button>
+                <!-- message.emitter.nick -->
+                <button class="btn reply btn-sm btn-outline-dark rounded-circle" title="Mensaje privado" [routerLink]="['/mensajes/responder', user.nick]" ><i class="bi bi-chat-right-text"></i></button>
+              </div>
+
+            </div>
+
+            <div class="user-stats" *ngIf="stats">
+              <!-- aqui van los contadores del usuario-->
+              <div class="data following-data d-flex flex-column justify-content-center align-items-center"
+              [routerLink]="['/perfil', user._id]">
+                <span class="stats-label">Publicaciones</span>
+                <span class="icon-mobile"><i class="bi bi-card-text"></i></span>
+                <span class="stats-value">{{stats.publications}}</span>
+              </div>
+              <hr class="m-2">
+              <div class="data followed-data d-flex flex-column justify-content-center align-items-center"
+                   [routerLink]="['/seguidores', user._id, 1]">
+                <span class="stats-label">Seguidores</span>
+                <span class="icon-mobile"><i class="bi bi-person"></i><i class="bi bi-arrow-down-short"></i></span>
+                <span class="stats-value">{{stats.followed}}</span>
+              </div>
+              <hr class="m-2">
+              <div class="data publications-data d-flex flex-column justify-content-center align-items-center"
+                   [routerLink]="['/siguiendo', user._id, 1]">
+                <span class="stats-label">Siguiendo</span>
+                <span class="icon-mobile"><i class="bi bi-person"></i><i class="bi bi-arrow-up-short"></i></span>
+                <span class="stats-value">{{stats.following}}</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end profile card -->
+
+        <div class="user-publications" *ngIf="user">
+          <app-publications [user]="user._id"></app-publications>
+        </div>
+
+      </div>
+
+
+      <div class="col-xl-4 col-lg-6 profile">
+        <app-sidebar></app-sidebar>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

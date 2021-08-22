@@ -1,0 +1,149 @@
+<div class="body">
+
+  <div class="container-fluid mi-contenedor p-2">
+    <div class="row titular">
+      <div class="col-xl-8 col-lg-6 p-0 px-3 d-flex flex-wrap flex-row justify-content-between">
+        <h2 class="p-0 m-0">Timeline</h2>
+        <button class="btn btn-outline-dark btn-sm new-publi" (click)="refresh()">Nuevas publicaciones <i class="bi bi-lightning"></i></button>
+        <button class="btn btn-outline-dark btn-sm new-publi-icon" (click)="refresh()"><i class="bi bi-lightning"></i></button>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class=" col-xl-8 col-lg-6 p-0 d-flex flex-column justify-content-start align-items-center" *ngIf="publications && publications.length != 0; else noPublications">
+
+        <div class="publications w-100 d-flex flex-column align-items-center justify-content-center pt-2">
+          <!-- tarjetas de usuarios -->
+          <div *ngFor="let publication of publications" class="user-card">
+
+            <div class="card-body d-flex justify-content-between"> <!--  flex-wrap -->
+              <!-- nombre e imagen de usuario -->
+              <div class="user w-100 d-flex align-items-center">
+                <div class="image-user align-self-start"> <!-- para que la foto siempre esté al principio -->
+                  <a [routerLink]="['/perfil', publication.user._id]"> <!-- para que te lleve al perfil de ese usuario -->
+                    <img *ngIf="publication.user.image" src="{{ url + 'get-image-user/' + publication.user.image }}" alt="user_image">
+                  </a>
+                </div>
+
+                <div class=" align-self-start">
+                  <div class="d-flex flex-row flex-wrap user-name">
+                    <h5 [routerLink]="['/perfil', publication.user._id]" class="nickname">{{ publication.user.nick }} <span class="verified" *ngIf="publication.user.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i> </span></h5>
+                    <span class="date">Hace {{ (publication.created_at | amFromUnix) | amLocale:'es' | amTimeAgo: true }} </span>
+                  </div>
+                  <div class="text">
+                    <p class="text">{{ publication.text }}</p>
+                  </div>
+                  <div class="image-publi" *ngIf="publication.file != 'null'">
+                    <img (click)="showImage(publication.file)" src="{{ url + 'get-image-publi/' + publication.file }}" alt="publication_file">
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- botones de me gusta y eliminar publicación-->
+              <div class="p-2 buttons d-flex justify-content-end align-items-center">
+                <!-- Boton me gusta-->
+
+                <button class="d-block btn rounded-button btn-outline-danger btn-sm like" *ngIf="liking.indexOf(publication._id) < 0" (click)="likePublication(publication._id)">
+                  <span class="normal-button"> <i class="bi bi-heart"></i> </span>
+                  <!-- <span class="mobile-button"> <i class="bi bi-heart"></i> </span> -->
+                </button>
+
+                <button class="btn user-button rounded-button btn-danger btn-sm" *ngIf="liking.indexOf(publication._id) >= 0"
+                        (mouseenter)="mouseEnter(publication._id)"
+                        (mouseleave)="mouseLeave()"
+                        [class.boton-secondary]="publication._id == publicationOver"
+                        (click)="dislikePublication(publication._id)">
+
+                  <span *ngIf="publication._id == publicationOver; else liking">
+                    <span class="normal-button"> <i class="bi bi-heart-half"></i> </span>
+                    <!--<span class="mobile-button"> <i class="bi bi-heart-half"></i> </span>-->
+                  </span>
+
+                  <ng-template #liking>
+                    <span class="normal-button"> <i class="bi bi-heart-fill"></i> </span>
+                    <!--<span class="mobile-button"> <i class="bi bi-heart-fill"></i> </span>-->
+                  </ng-template>
+                </button>
+
+                <!-- <i class="bi bi-heart-half"></i> -->
+
+                <!--<button class="d-block btn rounded-button btn-outline-danger btn-sm like">
+                  <i class="bi bi-heart"></i>
+                </button>-->
+
+                <!-- Boton eliminar publicación -->
+                <button class="d-block btn rounded-button btn-outline-light btn-sm delete ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteModal_' + publication._id" *ngIf="publication.user._id == identity._id">
+                  <i class="bi bi-trash"></i>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal_{{publication._id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="deleteModalLabel">Aviso </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        ¿Estás seguro de que deseas <strong class="text-danger fst-italic">eliminar</strong> esta publicación?
+                        <br>Si lo haces no podrás recuperarla.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deletePublication(publication._id)"> Sí, eliminar </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- fin modal -->
+              </div>
+
+            </div>
+          </div>
+          <!-- fin tarjetas de usuarios -->
+        </div>
+
+        <div class="row">
+          <div class="mi-boton d-flex justify-content-center align-items-center p-1" *ngIf="pages != page"> <!-- para que no muestre el botón si no hay mas de una página -->
+            <button (click)="viewMore()" *ngIf="!noMore" class="btn btn-outline-dark">Ver más publicaciones</button>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-xl-4 col-lg-6 profile">
+        <app-sidebar (sended)="refresh()" ></app-sidebar> <!-- [stats]="stats" -->
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="ventana-modal"> <!-- ventana modal -->
+
+    <span class="p-2" id="close" (click)="closeImage()"><i class="bi bi-x-lg"></i></span>
+
+    <div id="contenido-modal">
+        <div id="foto-modal">
+          <img *ngIf="show" src="{{ url + 'get-image-publi/' + show }}" alt="foto-zoom">
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<ng-template #noPublications>
+
+  <div class=" col-xl-8 col-lg-6 p-0 d-flex flex-column justify-content-start align-items-center" >
+    <div class="mi-alerta d-flex justify-content-center align-content-center">
+      <span class="text-center">No hay publicaciones que mostrar</span>
+    </div>
+  </div>
+
+
+</ng-template>

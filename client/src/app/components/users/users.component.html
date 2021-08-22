@@ -1,0 +1,94 @@
+<div class="body">
+
+  <div class="container-fluid mi-contenedor p-2">
+
+    <div class="row titular">
+      <div class="col-xl-8 col-lg-6 p-0 px-3 d-flex flex-wrap flex-row justify-content-between">
+        <h2 class="p-0 m-0">Gente</h2>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-xl-8 col-lg-6">
+
+        <div class="row p-0 d-flex flex-column align-items-center justify-content-center pt-2">
+          <!-- tarjetas de usuarios -->
+          <div *ngFor="let user of users" class="user-card">
+
+            <div class="card-body d-flex justify-content-between">
+              <!-- nombre e imagen de usuario -->
+              <div class="user d-flex align-items-center">
+                <div class="image-user">
+                  <a [routerLink]="['/perfil', user._id]"> <!-- para cargar el perfil del usuario -->
+                    <img *ngIf="user.image" src="{{ url + 'get-image-user/' + user.image }}" alt="user_image">
+                  </a>
+                </div>
+
+                <div class="user-name">
+                  <h5 [routerLink]="['/perfil', user._id]" class="nickname">{{ user.nick }} <span class="verified" *ngIf="user.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i> </span></h5>
+                  <p class="fullname">  {{user.name + ' ' + user.surname}}  </p>
+                </div>
+              </div>
+
+              <!-- botones de seguir y dejar de seguir-->
+              <div class="buttons" *ngIf="user._id != identity._id"> <!-- para que no muestre los botones de seguir en el propio usuario loggeado-->
+                <button class="btn user-button boton-seguir btn-sm" *ngIf="follows.indexOf(user._id) < 0" (click)="followUser(user._id)">
+                  <span class="normal-button"> Seguir </span>
+                  <span class="mobile-button"> <i class="bi bi-person-plus"></i> </span>
+                </button>
+
+                <button class="btn user-button btn-success btn-sm" *ngIf="follows.indexOf(user._id) >= 0"
+                        (mouseenter)="mouseEnter(user._id)"
+                        (mouseleave)="mouseLeave()"
+                        [class.btn-danger]="user._id == followUserOver"
+                        (click)="unfollowUser(user._id)">
+
+                  <span *ngIf="user._id == followUserOver; else following">
+                    <span class="normal-button"> Dejar de seguir </span>
+                    <span class="mobile-button"> <i class="bi bi-person-x"></i> </span>
+                  </span>
+
+                  <ng-template #following>
+                    <span class="normal-button"> Siguiendo </span>
+                    <span class="mobile-button"> <i class="bi bi-person-check"></i> </span>
+                  </ng-template>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <!-- fin tarjetas de usuarios -->
+        </div>
+
+
+        <div class="row p-2 pb-3">
+          <div class="col-xl-12 d-flex flex-row align-items-center justify-content-center">
+            <!--<nav class="m-0" aria-label="Page navigation example">
+              <ul class="pagination m-0">
+                <li class="page-item " [class.disabled]="page <= 1"> <a class="page-link" [routerLink]="['/gente', prev_page]">Anterior</a></li>
+                <li class="page-item" [class.disabled]="pages == page"> <a class="page-link" [routerLink]="['/gente', next_page]">Siguiente</a></li>
+
+                  <li class="page-item" *ngIf="page > 1"> <a class="page-link" [routerLink]="['/gente', prev_page]">Anterior</a></li>
+                <li class="page-item" *ngIf="pages != page"> <a class="page-link" [routerLink]="['/gente', next_page]">Siguiente</a></li>
+
+              </ul>
+            </nav>-->
+
+              <button class="btn btn-outline-dark d-block m-1" [class.disabled]="page <= 1 || !page" [routerLink]="['/gente', prev_page]">Anterior</button>
+              <button class="btn btn-outline-dark d-block m-1" [class.disabled]="pages == page || pages == 1" [routerLink]="['/gente', next_page]">Siguiente</button>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xl-4 col-lg-6 profile">
+        <app-sidebar></app-sidebar> <!-- [stats]="stats" -->
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

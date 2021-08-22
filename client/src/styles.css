@@ -1,0 +1,132 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* fuentes */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+/* iconos de bootstrap */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  background-image: url('src/assets/img/CrystalsMarble.jpg');
+  background-position: center;
+  background-attachment: fixed;
+}
+
+div.body {
+  /*background-image: url('src/assets/img/CrystalsMarble.jpg');
+  background-position: center;
+  background-attachment: fixed;*/
+  height: 100%;
+}
+
+div.titular {
+  padding: 10px 5px;
+}
+
+div.titular h2 {
+  font-family: 'DM Serif Display', serif;
+  letter-spacing: 5px;
+}
+
+.mi-contenedor {
+  background-color: transparent;
+  width: 95%;
+}
+
+
+/* sidebar */
+div.profile {
+  padding: 20px;
+  height: 100%;
+  position: fixed;
+  right: 23px;
+}
+
+/*
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: rgb(206, 206, 206);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: none;
+  width: 150px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #909090;
+} */
+
+::-webkit-scrollbar {
+  width: 8px;     /* Tamaño del scroll en vertical */
+  height: 8px;    /* Tamaño del scroll en horizontal */
+  /*display: none;*/  /* Ocultar scroll */
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+::-webkit-scrollbar-thumb:active {
+  background-color: #969696;
+}
+
+::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo cuando esté en active o hover */
+::-webkit-scrollbar-track:hover,
+::-webkit-scrollbar-track:active {
+background: #d4d4d4;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 990px) {
+  /* sidebar */
+  div.profile {
+    padding: 20px;
+    height: 100%;
+    position: fixed;
+    right: 5px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  div.profile {
+    padding: 20px;
+    position:inherit;
+  }
+}

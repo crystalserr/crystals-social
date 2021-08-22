@@ -1,0 +1,60 @@
+/* clase para centrar el contenedor */
+.main {
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.mi-contenedor {
+  margin: 30px;
+  padding: 25px;
+  height: auto;
+  /* 350px lo ideal para desktop, ahora esta en auto para que en movil se vea bien */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 15px;
+  background-color: #f8f9fad5;
+}
+
+div.menu-logged {
+  width: 50%;
+}
+
+div.menu-logged button {
+  width: 130px;
+}
+
+div.titular {
+  letter-spacing: 1px;
+  word-spacing: 15px;
+}
+
+.titulo {
+  font-size: 50px;
+  text-align: center;
+}
+
+span.name {
+  font-family: 'DM Serif Display', serif;
+}
+
+div.descripcion {
+  font-size: 20px;
+}
+
+div.descripcion p {
+  text-align: center;
+}
+
+div.botones {
+  display: flex;
+  justify-content: center;
+}
+
+div.botones button {
+  margin: 10px 5px;
+}

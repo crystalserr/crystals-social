@@ -1,0 +1,229 @@
+
+
+div.users {
+  padding: 10px 20px;
+}
+
+div.user-card {
+  border-radius: 15px;
+  background-color: #f8f9fad5;
+  height: auto;
+  padding: 3px;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+
+div.image-user {
+  height: auto;
+  margin: 0px 20px 0px 0px;
+}
+
+div.image-user img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+div.user-name {
+  color: #212529;
+  height: auto;
+}
+
+h5.nickname {
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 10px 5px 0px;
+  font-family: 'DM Serif Display', serif;
+}
+
+span.verified {
+  color: rgb(36, 202, 202);
+  padding: 3px;
+}
+
+span.date {
+  /*margin-left: 5px;*/
+  padding: 5px 0px;
+  color: gray;
+}
+
+p.text {
+  font-size: 16px;
+  margin: 0;
+  text-align: left;
+  padding: 5px 0px;
+}
+
+div.buttons {
+  /*background-color: teal;*/
+  justify-self: start;
+}
+
+button.rounded-button {
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
+button.boton-seguir {
+  background-color: rgb(204, 175, 236);
+  color: white;
+}
+
+button.boton-siguiendo {
+  background-color: #adb5bd;
+}
+
+div.mi-alerta {
+  border-radius: 15px;
+  background-color: white;
+  padding: 20px 10px;
+  margin: 20px 0px;
+}
+
+
+div.image-publi img {
+  margin: 10px 5px 0px 0px;
+  border-radius: 15px;
+  height: 150px;
+  width: auto;
+  object-fit: cover;
+}
+
+/* ventana modal */
+
+#ventana-modal {
+  display: none; /* aqui ponia none */
+  position: fixed;
+  z-index: 151;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0, 0%, 0%, 0.93);
+}
+
+#contenido-modal {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 70%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#foto-modal img{
+  display: block;
+  margin: auto;
+  width: 70%;
+  height: 70%;
+  opacity: 1.0;
+  object-fit: cover;
+}
+
+#close {
+  color: white;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+button.delete {
+  color:rgb(132, 81, 186);
+  border-color: rgb(132, 81, 186);
+}
+
+button.delete:hover {
+  background-color: rgb(132, 81, 186);
+  color: white
+}
+
+/* modal eliminar */
+
+div.modal-content {
+  border-radius: 15px;
+  border: none;
+  margin: 0px 20px;
+}
+
+h4.modal-title {
+  font-family: 'DM Serif Display', serif;
+  color:rgb(132, 81, 186);
+}
+
+
+@media screen and (max-width: 500px) {
+  .card-body {
+    flex-wrap: wrap;
+  }
+
+  .buttons {
+    width: 100%;
+    /*background-color: white;
+    border-radius: 20px;
+    padding: 10px 20px !important;
+    margin-top: 15px;*/
+  }
+
+  p.text {
+    font-size: 14px;
+  }
+
+  h5.nickname{
+    font-size: 16px;
+  }
+
+  span.date {
+    font-size: 12px;
+  }
+
+  div.card-body {
+    padding: 10px;
+  }
+
+  div.image-publi img {
+    width: 90%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  /* ventana modal */
+
+
+  #contenido-modal {
+    width: 80%;
+    height: 90%;
+  }
+
+
+  #foto-modal img{
+    width: 90%;
+    height: auto;
+  }
+
+  #close {
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

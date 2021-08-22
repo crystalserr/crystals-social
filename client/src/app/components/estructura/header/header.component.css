@@ -1,0 +1,103 @@
+
+nav {
+  width: 100%;
+}
+
+.titulo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 35px;
+}
+
+span.username {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.username p {
+  display: block;
+  padding: 0px 15px;
+  align-self: flex-end;
+  border-right: 1px solid #343434;
+  margin-right: 20px;
+}
+
+.username button {
+  display: block;
+}
+
+fa-icon.logo {
+  font-size: 35px;
+  margin: 10px 15px;
+}
+
+i.menu-ico {
+  margin: 10px 10px 10px 0px;
+}
+
+.nav-link {
+  margin: 0px 5px;
+}
+
+.menu {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 150;
+  /*font-weight: 650;*/
+  font-size: 17px;
+  /*font-family: 'Montserrat', sans-serif;*/
+}
+
+#navbarNav li a {
+  margin: 20px;
+  height: 100%;
+}
+
+ul.user-info {
+  margin-right: 10px;
+}
+
+span.user-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: #343434;
+}
+
+span.user-name:hover {
+  color: #629aae;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 1px 1px 7px 1px rgba(109, 109, 109, 0.408);
+  background-color: #fafafa;
+  border-radius: 15px;
+  width: 250px;
+}
+
+.dropdown-item:hover {
+  background-color: transparent;
+  font-weight: 500;
+}
+
+.foto-perfil img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+  margin: 0px 0px 0px 10px;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 992px) {
+  .foto-perfil {
+    display: none;
+  }
+}

@@ -1,0 +1,146 @@
+div.profile-card {
+  border-radius: 15px;
+  background-color: #f8f9fad5;
+  height: auto;
+  width: 97%;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+div.user-publications {
+  height: auto;
+  width: 97%;
+}
+
+div.user-image img {
+  height: 125px;
+  width: 125px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+div.user-image {
+  margin-right: 20px;
+}
+
+div.user-name {
+  margin-left: 20px;
+}
+
+.nickname {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'DM Serif Display', serif;
+}
+
+span.verified {
+  color: rgb(36, 202, 202);
+  padding: 3px;
+}
+
+/* botones de seguir y siguiendo */
+
+div.buttons {
+  /*background-color: teal;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.boton-seguir {
+  background-color: rgb(204, 175, 236);
+  color: white;
+}
+
+/* ahora mismo no estoy usando esta clase */
+button.boton-siguiendo {
+  background-color: #adb5bd;
+}
+
+/* profile stats */
+
+
+span.stats-label {
+  font-size: 17px;
+}
+
+span.stats-value {
+  font-weight: 600;
+}
+
+div.data {
+  cursor: pointer;
+  padding: 6px 0px;
+}
+
+div.data:hover {
+  border-radius: 15px;
+  background-color: rgb(233, 233, 233);
+}
+
+div.user-stats {
+  background-color: white;
+  width: 230px;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 10px 20px;
+}
+
+span.icon-mobile {
+  display: none;
+}
+
+button.reply {
+  color: rgb(123, 87, 162);
+  border-color: rgb(123, 87, 162);
+  margin-right: 5px;
+}
+
+button.reply:hover {
+  background-color: rgb(123, 87, 162);
+  color: whitesmoke;
+}
+
+@media screen and (max-width: 600px) {
+  .mi-contenedor {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  div.user-image img {
+    height: 90px;
+    width: 90px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+  span.stats-label {
+    display: none;
+  }
+
+  span.stats-value {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  span.icon-mobile {
+    display: block;
+    font-size: 20px;
+  }
+
+  div.user-stats {
+    width: 100%;
+    display: flex;
+    justify-content:space-around;
+  }
+
+  div.data {
+    width: 33%;
+  }
+
+  div.data:hover {
+    background-color: transparent;
+  }
+}

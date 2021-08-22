@@ -1,0 +1,39 @@
+<div class="main">
+  <div class="container mi-contenedor">
+
+    <div class="row justify-content-md-center titular">
+      <div class="col-md-12">
+        <p class="titulo">Bienvenido a <span class="name">crystals</span></p>
+      </div>
+    </div>
+
+    <div class="row justify-content-md-center descripcion">
+      <div class="col-md-12">
+        <p>Crystals es una red social donde puedes compartir tu vida</p>
+      </div>
+    </div>
+
+    <div class="row justify-content-lg-center mt-3 menu-logged" *ngIf="identity"> <!-- quiero que esta row solo se muestre si estas loggeado -->
+      <div class="col-md-4 botones">
+        <button class="btn btn-outline-dark" id="btn-home" [routerLink]="['/perfil', identity._id]">MI PERFIL</button>
+      </div>
+      <div class="col-md-4 botones">
+        <button class="btn btn-outline-dark" id="btn-timeline" [routerLink]="['/timeline']">TIMELINE</button>
+      </div>
+      <div class="col-md-4 botones">
+        <button class="btn btn-outline-dark" id="btn-gente" [routerLink]="['/gente']" >GENTE</button>
+      </div>
+    </div>
+
+    <div class="row justify-content-md-center mt-3 menu" *ngIf="!identity">
+      <div class="col-md-6 botones">
+        <button class="btn btn-outline-dark" id="btn-login" [routerLink]="['/login']">LOGIN</button>
+      </div>
+      <div class="col-md-6 botones">
+        <button class="btn btn-outline-dark" id="btn-register" [routerLink]="['/register']">REGISTER</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

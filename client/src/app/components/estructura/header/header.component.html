@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light menu p-0 m-0">
+  <div class="container-fluid">
+
+    <a [routerLink]="['/home']" class="navbar-brand titulo"><fa-icon class="logo" [icon]="faGem"></fa-icon>{{title}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse h-100" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="identity">
+        <!--<li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']"><i class="bi bi-house menu-ico"></i> Home</a>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/timeline']" [routerLinkActive]="['active']"><i class="bi bi-list-ul menu-ico"></i> Timeline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/gente']" [routerLinkActive]="['active']"><i class="bi bi-people menu-ico"></i> Gente</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/mensajes']" [routerLinkActive]="['active']"><i class="bi bi-chat-square-text menu-ico"></i> Mensajes</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!identity">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']"> <i class="bi bi-house menu-ico"></i>  Home</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0 user-info" *ngIf="identity"> <!-- d-flex flex-row align-items-center -->
+        <li class="nav-item dropstart">
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- dropdown-toggle esta clase añade la flechita -->
+            <span class="user-name">{{ identity?.nick }}</span>
+          </a>
+          <ul class="dropdown-menu mt-2" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/perfil', identity._id]">Mi perfil <i class="bi bi-person-circle"></i> </a></li>
+            <li><a class="dropdown-item" [routerLink]="['/mis-datos']">Mis datos <i class="bi bi-gear"></i> </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['/change-password']">Cambiar contraseña <i class="bi bi-key"></i> </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" (click)="logout()">Logout <i class="bi bi-door-open"></i> </a></li>
+          </ul>
+        </li>
+        <li class="nav-item foto-perfil">
+          <!--<fa-icon class="menu-ico " [icon]="faUser"></fa-icon>--> <!-- ver que hago con la imagen porque en el menu hamburguesa se ve mal, por el displayflex-->
+          <img [routerLink]="['/perfil', identity._id]" alt="user_image" src="{{url + 'get-image-user/' + identity.image }}">
+        </li>
+      </ul>
+
+      <!-- si no esta loggeado se muestran los botones de login y register-->
+      <form class="d-flex" *ngIf="!identity">
+
+        <button class="btn btn-outline-dark m-2" type="button" [routerLink]="['/login']">Login</button>
+        <button class="btn btn-outline-dark m-2" type="button" [routerLink]="['/register']" >Registro</button>
+
+        <!--<span class="username" *ngIf="identity; else login">
+
+          <p>{{ identity?.nick }}</p>
+          <button class="btn btn-outline-dark my-2 my-sm-0" type="button" (click)="onLogout()">Logout</button>
+
+        </span>-->
+
+        <ng-template #login>
+
+        </ng-template>
+
+      </form>
+
+    </div>
+
+  </div>
+</nav>
+

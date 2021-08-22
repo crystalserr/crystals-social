@@ -1,0 +1,93 @@
+<div class="body">
+
+  <div class="container-fluid mi-contenedor">
+
+    <div class="row titular">
+      <div class="col-lg-12 d-flex flex-wrap flex-row justify-content-between">
+        <h3 class="p-0 m-0">Nuevo mensaje</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-messages">
+
+        <div class="alert alert-success" *ngIf="status == 'success' ">
+          <a>Mensaje enviado correctamente</a>.
+        </div>
+        <div class="alert alert-danger" *ngIf="status == 'error' ">
+          {{mensajeError}}
+        </div>
+
+        <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group mt-3">
+
+            <div class="persona user-card" *ngIf="replyUser && replyUser.name != undefined">
+
+              <div class="card-body d-flex justify-content-between">
+                <!-- nombre e imagen de usuario -->
+                <div class="user d-flex align-items-center">
+                  <div class="image-user">
+                    <a [routerLink]="['/perfil', replyUser._id]"> <!-- para cargar el perfil del usuario -->
+                      <img *ngIf="replyUser.image" src="{{ url + 'get-image-user/' + replyUser.image }}" alt="user_image">
+                    </a>
+                  </div>
+
+                  <div class="user-name">
+                    <h5 [routerLink]="['/perfil', replyUser._id]" class="nickname">{{ replyUser.nick }} <span class="verified" *ngIf="replyUser.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i> </span></h5>
+                    <p class="fullname">  {{replyUser.name + ' ' + replyUser.surname}}  </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <label for="receiver" class="mi-label">Enviar mensaje a
+              <!--<button class="btn btn-sm btn-outline-secondary popover-button" type="button" placement="top" ngbPopover="Solo podrás enviar mensajes a los usuarios que estés siguiendo" popoverTitle="Importante">
+                <i class="bi bi-exclamation-lg"></i>
+              </button>-->
+            </label>
+            <select id="receiver" name="receiver" class="form-select" required formControlName="receiver">
+              <option disabled selected>Selecciona una opción</option>
+              <option *ngFor="let user of users" value="{{user._id}}">
+                {{user.nick}}
+            </select>
+
+            <!-- validaciones campo receiver -->
+            <div *ngIf="receiver.invalid && (receiver.dirty || receiver.touched)">
+              <small class="text-danger"
+                *ngIf="text.errors?.required">
+                Debes seleccionar una persona.
+              </small>
+            </div>
+
+          </div>
+
+
+          <div class="form-group mt-3">
+            <label for="text" class="mi-label">Texto </label>
+            <textarea class="form-control" id="text" name="text" rows="3" formControlName="text"></textarea>
+
+            <!-- validaciones campo text -->
+            <div *ngIf="text.invalid && (text.dirty || text.touched)">
+              <small class="text-danger"
+                *ngIf="text.errors?.required">
+                El texto es obligatorio.
+              </small>
+            </div>
+
+          </div>
+
+          <div class="form-group mt-3">
+            <button type="submit" class="btn btn-outline-dark my-button" [disabled]="!messageForm.valid">ENVIAR</button>
+          </div>
+
+        </form>
+
+        <!-- formulario de envio de mensajes -->
+        </div>
+    </div>
+
+  </div>
+
+</div>

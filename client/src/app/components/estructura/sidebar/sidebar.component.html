@@ -1,0 +1,89 @@
+<div class="div-sidebar d-flex flex-column justify-content-start align-items-center">
+  <div class="profile-card ">
+
+    <div class="d-flex user-info justify-content-center align-items-center">
+      <div [routerLink]="['/perfil', identity._id]" class="user-image m-0">
+        <img src="{{ url + 'get-image-user/' + identity.image }}" alt="user-image">
+      </div>
+
+      <div class="user-name">
+        <a class="nickname" [routerLink]="['/perfil', identity._id]">{{ identity.nick }} <span class="verified" *ngIf="identity.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i> </span> </a>
+        <p class="fullname">{{ identity.name + ' ' + identity.surname }}</p>
+      </div>
+    </div>
+
+    <div class="stats d-flex justify-content-between" *ngIf="stats">
+      <div class="data following-data d-flex flex-column justify-content-center align-items-center" [routerLink]="['/perfil', identity._id]">
+        <span class="stats-label" >Publicaciones</span>
+        <span class="icon-mobile"><i class="bi bi-card-text"></i></span>
+        <span class="stats-value">{{stats.publications}}</span>
+      </div>
+      <div class="data followed-data d-flex flex-column justify-content-center align-items-center" [routerLink]="['/seguidores', identity._id, 1]">
+        <span class="stats-label">Seguidores</span>
+        <span class="icon-mobile"><i class="bi bi-person"></i><i class="bi bi-arrow-down-short"></i></span>
+        <span class="stats-value">{{stats.followed}}</span>
+      </div>
+      <div class="data publications-data d-flex flex-column justify-content-center align-items-center" [routerLink]="['/siguiendo', identity._id, 1]">
+        <span class="stats-label">Siguiendo</span>
+        <span class="icon-mobile"><i class="bi bi-person"></i><i class="bi bi-arrow-up-short"></i></span>
+        <span class="stats-value">{{stats.following}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- formulario de publicaciones ??-->
+
+  <div id="new-publication">
+    <h3 class="section-title">nueva publicación</h3>
+
+    <form [formGroup]="publicationForm" (ngSubmit)="onSubmit();"> <!-- aqui tengo que meter el form  group si hago los forms reactivos-->
+
+      <div class="form-group mt-3">
+        <label class="mi-label" for="text">¿Qué estás pensando?</label>
+        <textarea name="text" id="text" placeholder="¿Qué estás pensando hoy?" formControlName="text" required></textarea>
+
+        <!-- validaciones campo text -->
+        <div *ngIf="text.invalid && (text.dirty || text.touched)">
+          <small class="text-danger"
+            *ngIf="text.errors?.required">
+            El texto es obligatorio.
+          </small>
+        </div>
+
+        <small class="text-info" *ngIf="status == 'success' ">
+          Publicación subida correctamente.
+        </small>
+        <small class="text-danger" *ngIf="status == 'error' ">
+          {{mensajeError}}
+        </small>
+
+      </div>
+
+      <div class="form-group mt-3">
+
+        <label for="upload-file" class="mi-label">Añade una foto a tu publicación</label>
+        <input #fileInput (change)="fileChangeEvent($event)" class="form-control upload-file" name="upload-file" type="file" id="formFile" placeholder="Sube una foto a la publicación">
+
+        <!--validaciones campo password
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+
+          <small class="text-danger"
+            *ngIf="password.errors?.required">
+            La contraseña es obligatoria.
+          </small>
+          <small class="text-danger"
+              *ngIf="password.errors?.minlength">
+              <p>La contraseña no tiene {{registerForm.get('password').errors.minlength.requiredLength}} caracteres mínimo.</p>
+          </small>
+        </div>-->
+      </div>
+
+      <div class="form-group mt-3">
+        <button type="submit" class="btn btn-outline-dark my-button" [disabled]="!publicationForm.valid">PUBLICAR</button>
+      </div>
+      <!--<hr>
+      <button class="btn btn-outline-danger my-button"> <fa-icon [icon]="faGoogle"></fa-icon> Sing up with google</button>-->
+    </form>
+
+  </div>
+</div>

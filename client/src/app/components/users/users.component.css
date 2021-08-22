@@ -1,0 +1,98 @@
+div.users {
+  padding: 10px 20px;
+}
+
+div.user-card {
+  border-radius: 15px;
+  background-color: #f8f9fad5;
+  height: auto;
+  padding: 3px;
+  width: 97%;
+  margin: 10px;
+}
+
+
+div.image-user {
+  height: auto;
+  margin: 0px 20px 0px 0px;
+}
+
+div.image-user img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+div.user-name {
+  color: #212529;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+}
+
+h5.nickname {
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 0px;
+  font-family: 'DM Serif Display', serif;
+}
+
+span.verified {
+  color: rgb(36, 202, 202);
+  padding: 3px;
+}
+
+p.fullname {
+  font-size: 16px;
+  margin: 0;
+}
+
+div.buttons {
+  /*background-color: teal;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.boton-seguir {
+  background-color: rgb(204, 175, 236);
+  color: white;
+}
+
+button.boton-siguiendo {
+  background-color: #adb5bd;
+}
+
+span.mobile-button {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .mi-contenedor {
+    width: 90%;
+  }
+
+  span.normal-button {
+    display: none;
+  }
+
+  span.mobile-button {
+    display: block;
+    font-size: 15px;
+  }
+
+  button.user-button {
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+}

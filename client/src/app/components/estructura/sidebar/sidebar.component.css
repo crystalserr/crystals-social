@@ -1,0 +1,193 @@
+div.div-sidebar {
+  height: auto;
+}
+
+div.profile-card {
+  border-radius: 15px;
+  background-color: #f8f9fad5;
+  height: auto;
+  width: 100%;
+  padding: 15px;
+}
+
+div.user-image img {
+  height: 125px;
+  width: 125px;
+  border-radius: 100px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+div.user-image {
+  margin-right: 20px;
+}
+
+div.user-name {
+  margin-left: 20px;
+}
+
+div.user-info {
+  margin-bottom: 15px;
+}
+
+.nickname {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'DM Serif Display', serif;
+}
+
+span.verified {
+  color: rgb(36, 202, 202);
+  padding: 3px;
+}
+
+div.stats {
+  background-color: white;
+  border-radius: 50px;
+  height: 60px;
+  padding: 0px 30px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+span.stats-label {
+  font-size: 15px;
+}
+
+span.stats-value {
+  font-weight: 600;
+}
+
+div.data {
+  cursor: pointer;
+  width: 33%;
+}
+
+div.data span:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+div#new-publication {
+  background-color: #f8f9fad5;
+  margin-top: 20px;
+  border-radius: 15px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+form {
+  display: block;
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}
+
+button.my-button {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+label.mi-label {
+  margin-left: 15px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+input.upload-file {
+  height: 50px;
+  line-height: 40px;
+  background-color: #fff;
+  color: #343a40;
+  border: none;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+input.upload-file:focus {
+  box-shadow: none;
+  outline: none;
+  border-bottom: 1px solid #343a40;
+}
+
+h3.section-title {
+  letter-spacing: 2px;
+  word-spacing: 7px;
+  font-family: 'DM Serif Display', serif;
+}
+
+textarea {
+  border: none;
+  border-radius: 25px;
+  width: 100%;
+  padding: 10px;
+  height: 85px;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+  border-bottom: 1px solid #343a40;
+}
+
+span.icon-mobile {
+  display: none;
+}
+
+/* movil */
+@media screen and (max-width: 500px) {
+
+  span.stats-label {
+    display: none;
+  }
+
+  span.stats-value {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  span.icon-mobile {
+    display: block;
+    font-size: 20px;
+  }
+
+  div.user-image img {
+    height: 90px;
+    width: 90px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+}
+
+@media screen and (min-width: 992px) and (max-width: 1400px) {
+
+  span.stats-label {
+    display: none;
+  }
+
+  span.icon-mobile {
+    display: block;
+    font-size: 20px;
+  }
+
+  span.stats-value {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+}
