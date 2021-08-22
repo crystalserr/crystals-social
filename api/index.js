@@ -9,10 +9,10 @@ var port = 3800;
 mongoose.promise = global.Promise;
 
 // public mongo atlas - cloud database
-//mongoose.connect('mongodb+srv://admin:LuciaS_@cluster0.fk4ye.mongodb.net/crystals?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }) 
+mongoose.connect('mongodb+srv://admin:LuciaS_@cluster0.fk4ye.mongodb.net/crystals?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }) 
 
 // MongoDB Local
-mongoose.connect('mongodb://localhost:27017/crystals_db', { useNewUrlParser: true, useUnifiedTopology: true })    
+//mongoose.connect('mongodb://localhost:27017/crystals_db', { useNewUrlParser: true, useUnifiedTopology: true })    
 
     .then(() => {
             console.log("La conexión a la bd crystals se ha realizado correctamente");
