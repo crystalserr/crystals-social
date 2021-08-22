@@ -7,13 +7,8 @@ var port = 3800;
 // Conexión a la base de datos
 
 mongoose.promise = global.Promise;
-// mongoose.connect('mongodb://localhost:27017/cystals_db', { useMongoClient: true }) - a partir de la version 5.x de mongoose useMongoClient no es necesario
-// tuve que añadir las siguientes opciones para que no mostrase warning
 
-// MongoDB Atlas — cloud database
-//mongoose.connect('mongodb+srv://admin:LuciaS_@cluster0.fk4ye.mongodb.net/crystals_db?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-
-// public mongo atlas database
+// public mongo atlas - cloud database
 //mongoose.connect('mongodb+srv://admin:LuciaS_@cluster0.fk4ye.mongodb.net/crystals?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }) 
 
 // MongoDB Local
