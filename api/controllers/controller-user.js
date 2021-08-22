@@ -90,7 +90,7 @@ async function sendMailRegister(user) {
         subject: "Registro completado", // Subject line
         html: `
             <p>El <b>registro</b> se ha completado correctamente</p>
-            <p>Puedes iniciar sesión clickando en el siguiente <a href='http://localhost:4200/login'> enlace </a></p>
+            <p>Puedes iniciar sesión clickando en el siguiente <a href='http://ec2-13-58-31-8.us-east-2.compute.amazonaws.com/login'> enlace </a></p>
 
         `, // html body
     });
@@ -106,7 +106,7 @@ async function sendMailForgotPassword(user, token) {
         //text: "Hello world?", // plain text body
         html: `
             <p>La solicitud para la <b> recuperación de contraseña </b> se ha realizado correctamente</p>
-            <p>Haz click en el siguiente <a href='http://localhost:4200/new-password/${token}'>enlace</a> para poder restablecerla </p>
+            <p>Haz click en el siguiente <a href='http://ec2-13-58-31-8.us-east-2.compute.amazonaws.com/new-password/${token}'>enlace</a> para poder restablecerla </p>
 
         `, // html body
     });
@@ -504,7 +504,7 @@ function uploadImage(req, res) {
         // Si estamos enviando algún fichero
         let file_path = req.files.image.path;
         
-        let file_name = file_path.split('\\')[2]; // en el server es asi | en win va \\ asi
+        let file_name = file_path.split('/')[2]; // en el server es asi | en win va \\ asi
         console.log(file_path + "   " + file_name);
         let file_ext = file_name.split('\.')[1];
 
