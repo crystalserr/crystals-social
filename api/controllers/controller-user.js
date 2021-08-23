@@ -85,7 +85,7 @@ function saveUser(req, res) {
 async function sendMailRegister(user) {
 
     await transporter.sendMail({
-        from: '"Registro completado" <lucia.serranoperez01@gmail.com>', // sender address
+        from: '"Registro completado" <mycrystals.social@gmail.com>', // sender address
         to: user.email, // list of receivers
         subject: "Registro completado", // Subject line
         html: `
@@ -100,7 +100,7 @@ async function sendMailRegister(user) {
 async function sendMailForgotPassword(user, token) {
 
     await transporter.sendMail({
-        from: '"Contraseña olvidada" <lucia.serranoperez01@gmail.com>', // sender address
+        from: '"Contraseña olvidada" <mycrystals.social@gmail.com>', // sender address
         to: user.email, // list of receivers
         subject: "Recuperación de la contraseña", // Subject line
         //text: "Hello world?", // plain text body
