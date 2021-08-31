@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Componente de login cargando...');
+    //console.log('Componente de login cargando...');
   }
 
   get password() {
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         // si me devuelve los datos correctamente
         if (response.user && response.user._id) {
           this.identity = response.user;
-          console.log(this.identity);
+          //console.log(this.identity);
           if (!this.identity || !this.identity._id) {
             this.status = 'error';
             this.mensajeError = 'No se ha podido iniciar sesión, inténtelo de nuevo más tarde';
@@ -120,7 +120,7 @@ export class LoginComponent implements OnInit {
       response => {
         localStorage.setItem('stats', JSON.stringify(response));
         this.status = 'success';
-        console.log(response);
+        //console.log(response);
         this._router.navigate(['/timeline']); // dejo la redireccion a timeline
       },
       error => {

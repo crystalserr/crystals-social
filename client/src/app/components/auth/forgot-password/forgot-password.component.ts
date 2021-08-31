@@ -31,7 +31,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Componente de forgot-password cargando...');
+    //console.log('Componente de forgot-password cargando...');
   }
 
 

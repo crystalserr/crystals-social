@@ -49,12 +49,12 @@ function saveUser(req, res) {
                             user.save((err, userStored) => {
                                 if (err) return res.status(500).send({ message: 'Error al guardar el usuario' });
 
-                                console.log("userStored: " + JSON.stringify(userStored));
+                                //console.log("userStored: " + JSON.stringify(userStored));
 
                                 if (userStored) {
 
                                     // SE HA REGISTRADO CORRECTAMENTE EL USUARIO
-                                    console.log("registrando el user");
+                                    //console.log("registrando el user");
                                     try {
                                         // enviar el mail
                                         sendMailRegister(user);
@@ -492,10 +492,10 @@ function uploadImage(req, res) {
         // en linux es / 
         // en win es \\
         let file_name = file_path.split('\\')[2];
-        console.log(file_path + "   " + file_name);
+        //console.log(file_path + "   " + file_name);
         let file_ext = file_name.split('\.')[1];
 
-        console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
+        //console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
 
         if (userId != req.user.sub) {
             return removeFilesOfUploads(res, file_path, 'No tienes permiso para actualizar los datos del usuario');

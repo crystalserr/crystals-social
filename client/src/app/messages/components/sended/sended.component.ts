@@ -52,7 +52,7 @@ export class SendedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('sended.component se ha cargado correctamente');
+    //console.log('sended.component se ha cargado correctamente');
     this.actualPage();
   }
 
@@ -93,13 +93,13 @@ export class SendedComponent implements OnInit {
           this.pages = response.pages;
 
           if (page > this.pages) {
-            console.log(page)
+            //console.log(page)
             this._router.navigate(['/mensajes/enviados', 1]); //si pones una pagina que no existe te lleva a la primera
           }
 
         }
 
-        console.log(response);
+        //console.log(response);
       },
       error => {
         this.mensajeError = error.error.message;

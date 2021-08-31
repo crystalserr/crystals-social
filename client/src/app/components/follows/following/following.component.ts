@@ -54,7 +54,7 @@ export class FollowingComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("users.component se ha cargado");
+    //console.log("users.component se ha cargado");
     this.actualPage();
   }
 
@@ -114,21 +114,21 @@ export class FollowingComponent implements OnInit {
       response => {
         if (!response.follows) {
           this.status = 'error';
-          console.log("no hay follows")
+          //console.log("no hay follows")
         } else {
 
-          console.log(response);
+          //console.log(response);
 
           this.total = response.total;
           this.following = response.follows; // usuarios que está siguiendo el user que estamos viendo
           this.pages = Number(response.pages);
           this.follows = response.users_following; // ids de los usuarios que sigue el user loggeado (identity)
 
-          console.log(this.following);
+          //console.log(this.following);
 
           // esta puesto el codigo pero no funciona
           if (page > this.pages) {
-            console.log(page)
+            //console.log(page)
             this._router.navigate(['/siguiendo', user_id, page]); //si pones una pagina que no existe te lleva a la primera
           }
         }
@@ -153,7 +153,7 @@ export class FollowingComponent implements OnInit {
 
   // seguir a un usuario (followed), que pasamos por parámetro
   followUser(followed: string) {
-    console.log("following");
+    //console.log("following");
     var follow = new Follow('', this.identity._id, followed);
 
     this._followService.addFollow(this.token, follow).subscribe(
@@ -178,7 +178,7 @@ export class FollowingComponent implements OnInit {
 
   // dejar de  seguir a un usuario (followed)
   unfollowUser(followed: string) {
-    console.log("unfollowing")
+    //console.log("unfollowing")
     this._followService.deleteFollow(this.token, followed).subscribe(
       response => {
         var search = this.follows.indexOf(followed);
@@ -203,7 +203,7 @@ export class FollowingComponent implements OnInit {
       response => {
         localStorage.setItem('stats', JSON.stringify(response));
         this.status = 'success';
-        console.log(response);
+        //console.log(response);
       },
       error => {
         console.log(<any>error);

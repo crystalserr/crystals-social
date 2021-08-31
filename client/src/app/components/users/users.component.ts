@@ -50,7 +50,7 @@ export class UsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("users.component se ha cargado");
+    //console.log("users.component se ha cargado");
     this.actualPage();
   }
 
@@ -94,7 +94,7 @@ export class UsersComponent implements OnInit {
           //console.log(this.follows);
 
           if (page > this.pages) {
-            console.log(page)
+            //console.log(page)
             this._router.navigate(['/gente', 1]); //si pones una pagina que no existe te lleva a la primera
           }
         }
@@ -119,7 +119,7 @@ export class UsersComponent implements OnInit {
 
   // seguir a un usuario (followed), que pasamos por parámetro
   followUser(followed: string) {
-    console.log("following");
+    //console.log("following");
     var follow = new Follow('', this.identity._id, followed);
 
     this._followService.addFollow(this.token, follow).subscribe(
@@ -144,7 +144,7 @@ export class UsersComponent implements OnInit {
 
   // dejar de  seguir a un usuario (followed)
   unfollowUser(followed: string) {
-    console.log("unfollowing")
+    //console.log("unfollowing")
     this._followService.deleteFollow(this.token, followed).subscribe(
       response => {
         var search = this.follows.indexOf(followed);
@@ -169,7 +169,7 @@ export class UsersComponent implements OnInit {
       response => {
         localStorage.setItem('stats', JSON.stringify(response));
         this.status = 'success';
-        console.log(response);
+        //console.log(response);
       },
       error => {
         console.log(<any>error);

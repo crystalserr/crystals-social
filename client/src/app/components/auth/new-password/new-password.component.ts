@@ -32,7 +32,7 @@ export class NewPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Componente de new-password cargando...');
+    //console.log('Componente de new-password cargando...');
   }
 
   get password() {

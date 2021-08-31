@@ -89,23 +89,8 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  /*
-  método que usaba para firebase
-  async onRegister() {
-    const {email, password} = this.registerForm.value;
-    try {
-      const user = await this.authSvc.register(email, password);
-      if (user) {
-        this.router.navigate(['/home']);
-      }
-    } catch(error) {
-      console.log(error)
-    }
-  }
-  */
-
   ngOnInit(): void {
-    console.log('Componente de register cargando...');
+    //console.log('Componente de register cargando...');
   }
 
 }

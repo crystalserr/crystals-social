@@ -184,7 +184,7 @@ function uploadImage(req, res) {
         var file_name = file_path.split('\\')[2];
         var file_ext = file_name.split('\.')[1];
 
-        console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
+        //console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
 
         if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif') {
             // solo podemos actualizarla si somos los creadores de esa publicacion
