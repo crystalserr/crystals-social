@@ -91,7 +91,7 @@ function getUnviewedMessages(req, res) {
 }
 
 // Marcar todos los mensajes como leídos (para eso es la opcion multi)
-// igual seria interesante hacer un metodo similar a este que solo actualice un mensaje (??)
+// NOTA - hacer un metodo similar a este que solo actualice un mensaje (??)
 function setViewedMessages(req, res) {
     var userId = req.user.sub;
 

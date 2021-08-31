@@ -19,7 +19,7 @@ function savePublication(req, res) {
     var publication = new Publication();
     publication.text = params.text; // lo minimo para crear una publicacion es que tenga texto
     publication.file = 'null'; // en principio no tiene que ser oblicatiorio que se suba una publicacion cuando se crea el post
-    publication.user = req.user.sub; //id del usuario identificado que esta creando la publicacion
+    publication.user = req.user.sub; // id del usuario identificado que esta creando la publicacion
     publication.created_at = moment().unix();
 
     publication.save((err, publicationStored) => {
@@ -110,7 +110,7 @@ function getUserPublications(req, res) {
         }); 
 }
 
-// obtiene los likes que hizo el usuario loggeado
+// Obtiene los likes que hizo el usuario loggeado
 async function getUserLikesPublications(user_id) {
 
     var liking = await Like.find({"user": user_id}).exec().then((likes) => {
@@ -150,8 +150,6 @@ function getPublication(req, res) {
 function deletePublication(req, res) {
     var publicationId = req.params.id; // peticion por delete
 
-    // antes de eliminar la publicación deberíamos eliminar la foto asociada a esa publicación
-
     // primero tengo que eliminar los likes asociados a esa publicación antes de eliminar la publicación
 
     Like.find({ publication: publicationId }).deleteMany(err => {
@@ -159,7 +157,7 @@ function deletePublication(req, res) {
             return res.status(500).send({ message: 'Error al eliminar la publicacion — GetPublication'});
         } else {
             // si se borraron correctamente los likes de la publicación
-            // bottamos la publicación
+            // borramos la publicación
 
             Publication.find({ user: req.user.sub, '_id': publicationId }).deleteOne(err => {
                 if (err) return res.status(500).send({ message: 'Error al eliminar la publicacion — GetPublication'});

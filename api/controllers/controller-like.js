@@ -43,8 +43,6 @@ function saveLike(req, res) {
 function deleteLike(req, res) {
 
     var userId = req.user.sub; // usuario loggeado
-    // intentar en un futuro pasar el nombre de usuario por la url, y obtener el id de ese usuario
-    // para guardarlo en followId, y así no estar mostrando el id en la barra de búsqueda
 
     var publicationId = req.params.id; // publicacion que le deja de gustar, lo vamos a pasar por la url — peticion delete
 

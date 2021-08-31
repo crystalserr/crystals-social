@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Schema de Message - Mensaje
 var MessageSchema = Schema({
     text: String,
     viewed: String, // podría ser boolean con true o false
