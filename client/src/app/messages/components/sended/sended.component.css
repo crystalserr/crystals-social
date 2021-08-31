@@ -114,3 +114,40 @@ p.text {
 }
 
 }
+
+
+@media screen and (max-width: 550px) {
+
+  div.card-body {
+    flex-wrap: wrap;
+  }
+
+  .buttons {
+    width: 100%;
+    /*background-color: white;
+    border-radius: 20px;
+    padding: 10px 20px !important;
+    margin-top: 15px;*/
+  }
+
+  p.text {
+    font-size: 14px;
+  }
+
+  h5.nickname{
+    font-size: 16px;
+  }
+
+  span.date {
+    font-size: 12px;
+  }
+
+  span.sended {
+    font-size: 13px;
+  }
+
+  div.card-body {
+    padding: 10px;
+  }
+}
+

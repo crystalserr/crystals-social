@@ -26,7 +26,7 @@ textarea {
   border-radius: 25px;
   width: 100%;
   padding: 10px;
-  height: 85px;
+  height: 120px;
   resize: none;
 }
 
@@ -38,11 +38,13 @@ select {
 
 select:focus {
   outline: none;
+  box-shadow: none;
   border-bottom: 1px solid #343a40;
 }
 
 textarea:focus {
   outline: none;
+  box-shadow: none;
   border-bottom: 1px solid #343a40;
 }
 
