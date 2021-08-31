@@ -24,8 +24,6 @@ export class PublicationService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                    .set('Authorization', token);
 
-    //console.log(params);
-
     return this._http.post(this.url + 'publication', params, {headers: headers});
   }
 

@@ -12,7 +12,8 @@ export class UploadService {
     this.url = GLOBAL.url;
   }
 
-  // mmirar de cambiar esto por fecth
+  // Metodo encargado de la subida de imagenes
+  // tanto de publication como de user
   makeFileRequest(
       url: string,
       params: Array<string>,

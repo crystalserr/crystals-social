@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
-    nick: new FormControl('', [Validators.required]), // validaré en algun momento que no puede haber dos iguales (?)
+    nick: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
