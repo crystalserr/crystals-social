@@ -489,15 +489,10 @@ function uploadImage(req, res) {
         // Si estamos enviando algún fichero
         let file_path = req.files.image.path;
         
-<<<<<<< HEAD
-        let file_name = file_path.split('/')[2]; // en el server es asi | en win va \\ asi
-        console.log(file_path + "   " + file_name);
-=======
         // en linux es / 
         // en win es \\
         let file_name = file_path.split('\\')[2];
         //console.log(file_path + "   " + file_name);
->>>>>>> develop
         let file_ext = file_name.split('\.')[1];
 
         //console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
