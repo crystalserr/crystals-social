@@ -20,7 +20,7 @@ export class NewPasswordComponent implements OnInit {
   public token: string; // token del usuario al que le establecemos la nueva password
 
   newPasswordForm = new FormGroup({
-    password: new FormControl('', [Validators.required, Validators.minLength(5)])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
   constructor(
