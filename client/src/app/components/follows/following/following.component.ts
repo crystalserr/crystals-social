@@ -83,8 +83,6 @@ export class FollowingComponent implements OnInit {
       }
 
       this.getUser(user_id, page);
-
-
     });
   }
 
