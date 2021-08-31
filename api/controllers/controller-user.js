@@ -491,7 +491,7 @@ function uploadImage(req, res) {
         
         // en linux es / 
         // en win es \\
-        let file_name = file_path.split('\\')[2];
+        let file_name = file_path.split('/')[2];
         //console.log(file_path + "   " + file_name);
         let file_ext = file_name.split('\.')[1];
 
