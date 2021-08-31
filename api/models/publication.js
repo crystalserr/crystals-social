@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Schema de Publication - Publicacion
 var PublicationSchema = Schema({
     text: String,
     file: String,

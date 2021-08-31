@@ -64,11 +64,11 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('add.component se ha cargado correctamente');
+    //console.log('add.component se ha cargado correctamente');
     this._route.params.subscribe(params => {
       this.replyUser = params['nick'];
     });
-    console.log(this.replyUser);
+    //console.log(this.replyUser);
 
     if (this.replyUser != undefined && this.replyUser != this.identity.nick) {
 
@@ -144,7 +144,7 @@ export class AddComponent implements OnInit {
       }
     );
 
-    console.log(this.message);
+    //console.log(this.message);
   }
 
   // listado de los usuarios que está siguiendo el usuario loggeado
@@ -152,7 +152,7 @@ export class AddComponent implements OnInit {
     // todos los usuarios de la web
     this._userService.getAllUsers().subscribe(
       response => {
-        console.log(response.users);
+        //console.log(response.users);
         this.users = response.users;
 
         this.users.forEach((user, index) => {
@@ -172,16 +172,6 @@ export class AddComponent implements OnInit {
       }
     );
 
-    // solo los usuarios que esta siguiendo el usuario loggeado
-    /*this._followService.getMyFollowing(this.token).subscribe(
-			response => {
-				this.users = response.follows;
-        console.log(response.follows)
-			},
-			error => {
-				console.log(<any>error);
-			}
-		);*/
   }
 
 }

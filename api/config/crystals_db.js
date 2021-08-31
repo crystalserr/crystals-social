@@ -29,6 +29,7 @@ user = {
     image: "default-user.png"
 }
 
+// Insertamos los usuarios en la colección
 db.users.insertMany([admin, user]);
 
 let user_admin = db.users.findOne({"nick": "admin"}); // recupero el usuario administrador
@@ -53,6 +54,7 @@ var publication2 = {
     user: user_admin._id
 }
 
+// Insertamos las publicaciones en la colección
 db.publications.insertMany([publication1, publication2]);
 
 

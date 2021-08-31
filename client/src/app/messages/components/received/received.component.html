@@ -33,7 +33,7 @@
                     <h5 [routerLink]="['/perfil', message.emitter._id]" class="nickname">{{ message.emitter.nick }} <span
                         class="verified" *ngIf="message.emitter.role == 'ROLE_ADMIN'"> <i class="bi bi-patch-check-fill"></i>
                       </span></h5>
-                    <span class="date">Hace {{ (message.created_at | amFromUnix) | amLocale:'es' | amTimeAgo: true }} </span>
+                    <span class="date"> {{ (message.created_at | amFromUnix) | amLocale:'es' | amDateFormat:'D MMMM YYYY, HH:mm'  }} </span>
                     <!--<span class="sended"> Enviado a <a
                         [routerLink]="['/perfil', message.receiver._id]">{{message.receiver.nick}}</a> </span>-->
                   </div>

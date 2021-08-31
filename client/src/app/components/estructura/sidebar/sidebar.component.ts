@@ -58,7 +58,7 @@ export class SidebarComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    console.log("el sidebar se ha cargado correctamente");
+    //console.log("el sidebar se ha cargado correctamente");
   }
 
   // para detectar cambios, como una nueva publicación o un nuevo seguimiento
@@ -83,7 +83,7 @@ export class SidebarComponent implements OnInit, DoCheck {
 
           // Si existen las imagenes
           if (this.filesToUpload != undefined) {
-            console.log("imagenes");
+            //console.log("imagenes");
             // Subir la imagen
             this._uploadService.makeFileRequest(this.url + 'upload-image-publi/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
               .then((result: any) => {
@@ -125,7 +125,7 @@ export class SidebarComponent implements OnInit, DoCheck {
 
     this._router.navigate(['/timeline']);
     this.sended.emit({ send: 'true' });
-    console.log("emitiendo evento");
+    //console.log("emitiendo evento");
 
     this.filesToUpload = undefined; // reseteamos el array
   }
@@ -136,7 +136,7 @@ export class SidebarComponent implements OnInit, DoCheck {
       response => {
         localStorage.setItem('stats', JSON.stringify(response));
         this.status = 'success';
-        console.log(response);
+        //console.log(response);
       },
       error => {
         console.log(<any>error);

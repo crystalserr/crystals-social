@@ -5,6 +5,9 @@ var moment = require('moment');
 
 var secret = 'clave_secreta_crystals';
 
+// Middleware que se ejecuta cada vez que se accede a una ruta
+// Se asegura de que la petición lleve la cabecera de autenticación
+// y comprueba si el token es válido
 exports.ensureAuth = function(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(403).send({ message: 'La petición no tiene la cabecera de autenticación' });

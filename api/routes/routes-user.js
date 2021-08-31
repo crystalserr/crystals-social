@@ -10,8 +10,7 @@ var md_auth = require('../middlewares/authenticated');
 var multiparty = require('connect-multiparty');
 var md_upload = multiparty({ uploadDir: './uploads/users' }); // directorio de subida de archivos
 
-/*api.get('/home', UserController.home);
-api.get('/pruebas', md_auth.ensureAuth, UserController.pruebas);*/
+// Creamos las rutas para el user-controller
 api.post('/register', UserController.saveUser);
 api.post('/login', UserController.loginUser);
 api.get('/user/:id', md_auth.ensureAuth, UserController.getUser);

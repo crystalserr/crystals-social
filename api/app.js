@@ -3,17 +3,9 @@
 // Configuración de express js
 
 var express = require('express');
-//var fs = require('fs');
-//var https = require('https');
 var bodyParser = require('body-parser');
 
 var app = express();
-
-/*https.createServer({
-    key: fs.readFileSync('certs/my_cert.key'),
-    cert: fs.readFileSync('certs/my_cert.crt')
-}, app).listen(3800, () => {
-    console.log('https');*/
 
 // cargar rutas
 var user_routes = require('./routes/routes-user');
@@ -22,7 +14,7 @@ var publication_routes = require('./routes/routes-publication');
 var message_routes = require('./routes/routes-message');
 var like_routes = require('./routes/routes-like');
 
-// middlewares — middlewaree es un método que se ejecuta antes de que llegue a un controlador
+// middlewares — middleware es un método que se ejecuta antes de que llegue a un controlador
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json()); // cada vez que reciba datos de una petición me lo va a convertir en un objeto JSON
 

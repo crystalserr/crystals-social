@@ -34,7 +34,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Componente de change-password cargando...');
+    //console.log('Componente de change-password cargando...');
   }
 
   get password() {

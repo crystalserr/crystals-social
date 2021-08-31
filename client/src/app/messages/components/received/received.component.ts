@@ -52,7 +52,7 @@ export class ReceivedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('received.component se ha cargado correctamente');
+    //console.log('received.component se ha cargado correctamente');
     this.actualPage();
   }
 
@@ -85,7 +85,7 @@ export class ReceivedComponent implements OnInit {
   }
 
   replyMessage(user: string) {
-    console.log(user);
+    //console.log(user);
     //this.respond.emit(user);
     this._router.navigate(['/mensajes/responder', user]);
   }
@@ -99,13 +99,13 @@ export class ReceivedComponent implements OnInit {
           this.pages = response.pages;
 
           if (page > this.pages) {
-            console.log(page)
+            //console.log(page)
             this._router.navigate(['/mensajes/recibidos', 1]); //si pones una pagina que no existe te lleva a la primera
           }
 
         }
 
-        console.log(response);
+        //console.log(response);
       },
       error => {
         this.mensajeError = error.error.message;

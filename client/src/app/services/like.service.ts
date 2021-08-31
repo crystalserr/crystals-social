@@ -20,7 +20,7 @@ export class LikeService {
   addLike(token: string, publication: any): Observable<any> {
     let params = JSON.stringify(publication);
 
-    console.log(params);
+    //console.log(params);
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                    .set('Authorization', token);
