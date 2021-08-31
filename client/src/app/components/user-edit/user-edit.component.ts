@@ -66,8 +66,8 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.user);
-    console.log('user-edit component se ha cargado');
+    //console.log(this.user);
+    //console.log('user-edit component se ha cargado');
 
     // establezco los valores de los inputs a las propiedades actuales del usuario
     this.editForm.get('name').setValue(this.user.name);
@@ -106,7 +106,7 @@ export class UserEditComponent implements OnInit {
             localStorage.setItem('identity', JSON.stringify(this.user)); // no se si seria mejor poner response.user
             this.identity = this.user;
 
-            console.log(this.filesToUpload);
+            //console.log(this.filesToUpload);
 
             // que solo actualice la imagen si la subimos
             if (this.filesToUpload != undefined) {

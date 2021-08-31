@@ -112,7 +112,7 @@ button.reply span {
     -moz-border-radius: 100px;
     -ms-border-radius: 100px;
     -o-border-radius: 100px;
-}
+  }
 }
 
 @media screen and (max-width: 550px) {

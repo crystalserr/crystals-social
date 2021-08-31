@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, DoCheck {
   }
 
   // para que se refresque el componente cuando te loggeas
-  // probablemente pueda quitar esto ya que cuando me loggeo redirijo a timeline ahora
+  // probablemente pueda quitar esto ya que cuando me loggeo carga timeline ahora
   ngDoCheck() {
     this.identity = this._userService.getIdentity();
   }

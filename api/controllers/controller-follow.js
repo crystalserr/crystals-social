@@ -14,9 +14,6 @@ function saveFollow(req, res) {
     follow.user = req.user.sub; // usuario loggeado
     follow.followed = params.followed; // usuario al que empieza a seguir
 
-    // Me deja guardar follows aunque no les pase el followed por parámetros — intentar arreglarlo despues
-    // También me deja guardar duplicados - arreglar
-
     if (follow.followed != undefined) {
         // Control de follows duplicados
         Follow.findOne({ user: follow.user, followed: follow.followed }).exec((err, follows) => {
@@ -47,10 +44,8 @@ function saveFollow(req, res) {
 function deleteFollow(req, res) {
 
     var userId = req.user.sub; // usuario loggeado
-    // intentar en un futuro pasar el nombre de usuario por la url, y obtener el id de ese usuario
-    // para guardarlo en followId, y así no estar mostrando el id en la barra de búsqueda
 
-    var followId = req.params.id; // usuario al que deja de seguir // lo vamos a pasar por la url — peticion delete
+    var followId = req.params.id; // usuario al que deja de seguir lo vamos a pasar por la url — peticion delete
 
     Follow.find({ 'user': userId, 'followed': followId }).deleteOne((err) => {
         if (err) return res.status(500).send({ message: 'Error al dejar de seguir — DeleteFollow' });
@@ -63,8 +58,6 @@ function deleteFollow(req, res) {
 function getFollowingUsers(req, res) {
     var userId = req.user.sub; // si solo le pasamos el id por paramétros y no la página
     // coge el usuario del token de auntenticación
-
-    // como en los métodos anteriores, intentar pasar el nick en vez del id del usuario
 
     if (req.params.id && req.params.page) {
         userId = req.params.id;
@@ -177,7 +170,6 @@ function getMyFollows(req, res) {
 
     var find = Follow.find({ user: userId }); // los usuarios que sigo
 
-    // mejorar lo de que el parametro followed de la url sea un booleano
     if (req.params.followed) {
         find = Follow.find({ followed: userId }); // los usuarios que me estan siguiendo — http://localhost:3800/api/get-my-follows/true
     }

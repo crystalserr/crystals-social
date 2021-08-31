@@ -30,7 +30,7 @@ function saveUser(req, res) {
             user.nick = params.nick;
             user.email = params.email;
             user.role = 'ROLE_USER';
-            user.image = 'default-user.png' // debería asignar una imagen por defecto a todos los usuarios cuando los creo
+            user.image = 'default-user.png' // asigna una imagen por defecto a todos los usuarios cuando se crean
 
             // Control de usuarios duplicados
             User.find({ $or: [
@@ -49,21 +49,18 @@ function saveUser(req, res) {
                             user.save((err, userStored) => {
                                 if (err) return res.status(500).send({ message: 'Error al guardar el usuario' });
 
-                                console.log("userStored: " + JSON.stringify(userStored));
+                                //console.log("userStored: " + JSON.stringify(userStored));
 
                                 if (userStored) {
 
                                     // SE HA REGISTRADO CORRECTAMENTE EL USUARIO
-                                    console.log("registrando el user");
+                                    //console.log("registrando el user");
                                     try {
                                         // enviar el mail
-                                        
-                                        let info = sendMailRegister(user);
-
+                                        sendMailRegister(user);
                                         res.status(200).send({ user: userStored });
-
                                     } catch (error) {
-                                        res.status(404).send({ message: 'No se ha registrado el usuario - fallo en el envio del email' });
+                                        res.status(404).send({ message: 'No se ha registrado el usuario - Fallo en el envío del email' });
                                     }
 
                                 } else {
@@ -81,7 +78,7 @@ function saveUser(req, res) {
     }
 }
 
-// envia el mail cuando se completa el registro
+// Envía el email cuando se completa el registro
 async function sendMailRegister(user) {
 
     await transporter.sendMail({
@@ -96,14 +93,13 @@ async function sendMailRegister(user) {
     });
 }
 
-// envia el mail de petición de cambio de contraseña
+// Envía el email de petición de cambio de contraseña
 async function sendMailForgotPassword(user, token) {
 
     await transporter.sendMail({
         from: '"Contraseña olvidada" <mycrystals.social@gmail.com>', // sender address
         to: user.email, // list of receivers
         subject: "Recuperación de la contraseña", // Subject line
-        //text: "Hello world?", // plain text body
         html: `
             <p>La solicitud para la <b> recuperación de contraseña </b> se ha realizado correctamente</p>
             <p>Haz click en el siguiente <a href='http://localhost:4200/new-password/${token}'>enlace</a> para poder restablecerla </p>
@@ -112,7 +108,7 @@ async function sendMailForgotPassword(user, token) {
     });
 }
 
-// metodo que envia el mail de recuperación de contraseña
+// Método que envía el mail de recuperación de contraseña
 function forgotPassword(req, res) {
     let params = req.body;
 
@@ -129,7 +125,6 @@ function forgotPassword(req, res) {
 
                 return res.status(200).send({
                     user: user,
-                    //token: token
                 });
 
             } else {
@@ -143,7 +138,7 @@ function forgotPassword(req, res) {
     }
 }
 
-// nueva contraseña - cuando el usuario olvidó su contraseña anterior
+// Nueva contraseña - cuando el usuario olvidó su contraseña anterior
 function newPassword(req, res) {
     let userId = req.user.sub; // esto lo obtengo con el token
     let params = req.body;
@@ -158,7 +153,7 @@ function newPassword(req, res) {
     
             if (user) {
 
-                // si existe el usuario le cambiamos la contraseña
+                // Si existe el usuario le cambiamos la contraseña
 
                 bcrypt.hash(newPassword, null, null, (err, hash) => {
                     user.password = hash;
@@ -189,7 +184,7 @@ function newPassword(req, res) {
 
 }
 
-// cambia la contraseña cuando el usuario esta loggeado
+// Cambia la contraseña cuando el usuario está loggeado
 function changePassword(req, res) {
     let userId = req.params.id; // esto lo paso por la url
     let params = req.body;
@@ -297,6 +292,7 @@ function getUser(req, res) {
     });
 }
 
+// Listar - devolver los datos de un usuario concreto (se le pasa el nick)
 function getUserNick(req, res) {
     // datos por url - params
     // datos por post o put - body
@@ -313,7 +309,7 @@ function getUserNick(req, res) {
     });
 }
 
-// funcion que devuelve la informacion de un seguimiento entre dos usuarios
+// Funcion que devuelve la informacion de un seguimiento entre dos usuarios
 async function followThisUser(identity_user_id, user_id) {
     let following = await Follow.findOne({ "user": identity_user_id, "followed": user_id }).exec().then((follow) => {
         return follow;
@@ -359,6 +355,7 @@ function getUsers(req, res) {
     });
 }
 
+// Listar todos los usuarios sin paginar ordenados por el nick
 function getAllUsers(req, res) {
     let identity_user_id = req.user.sub; // id del usuario loggeado
 
@@ -372,7 +369,7 @@ function getAllUsers(req, res) {
     });
 }
 
-// función asincrona que devuelve los ids de los usuarios que seguimos y que nos siguen
+// Función asincrona que devuelve los ids de los usuarios que seguimos y que nos siguen
 // following — que seguimos
 // followed — que nos siguen
 async function followUserIds(user_id) {
@@ -407,6 +404,7 @@ async function followUserIds(user_id) {
     }
 }
 
+// Devuelve los datos de los contadores de un usuario, numero de seguidores, seguidos y publicaciones
 function getCounters(req, res) {
     let user_id = req.user.sub;
     
@@ -419,6 +417,7 @@ function getCounters(req, res) {
     });
 }
 
+// Calcula los contadores
 async function getCountFollow(user_id) {
     let following = await Follow.countDocuments({ "user": user_id }).exec().then((count) => {
         return count;
@@ -451,7 +450,6 @@ function updateUser(req, res) {
     let userId = req.params.id;
     let update = req.body;
 
-    // Eliminar la propiedad password — es recomendable tener en un método separado la actualización de la contraseña
     delete update.password;
 
     if (userId != req.user.sub) {
@@ -465,19 +463,6 @@ function updateUser(req, res) {
     ] }).exec((err, users) => {
 
         if (err) return res.status(500).send({ message: 'Error en la petición — updateUser' });
-        
-        /*if (users && users.length >= 1) {
-            return res.status(404).send({ message: 'Los datos introducidos ya están en uso' });
-        } else {
-            // con el tercer parámetro de opciones, 'new: true' indicamos que en el objeto userUpdated queremos que estén los datos actualizados
-            User.findByIdAndUpdate(userId, update, { new: true }, (err, userUpdated) => {
-                if (err) return res.status(500).send({ message: 'Error en la peticion — updateUser' });
-
-                if (!userUpdated) return res.status(404).send({ message: 'No se ha posido actualizar el usuario' });
-
-                return res.status(200).send({ user: userUpdated });
-            });
-        }*/
 
         let user_isset = false;
         users.forEach((user) => {
@@ -504,11 +489,13 @@ function uploadImage(req, res) {
         // Si estamos enviando algún fichero
         let file_path = req.files.image.path;
         
-        let file_name = file_path.split('\\')[2]; // en el server es asi | en win va \\ asi
-        console.log(file_path + "   " + file_name);
+        // en linux es / 
+        // en win es \\
+        let file_name = file_path.split('\\')[2];
+        //console.log(file_path + "   " + file_name);
         let file_ext = file_name.split('\.')[1];
 
-        console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
+        //console.log('file name: ' + file_name + ' | file ext: ' + file_ext);
 
         if (userId != req.user.sub) {
             return removeFilesOfUploads(res, file_path, 'No tienes permiso para actualizar los datos del usuario');
@@ -523,7 +510,6 @@ function uploadImage(req, res) {
                 return res.status(200).send({ user: userUpdated });
             });
         } else {
-            //console.log("Extensión no válida")
             return removeFilesOfUploads(res, file_path, 'Extensión no válida'); // Eliminamos el fichero
         }
     } else {
@@ -533,7 +519,6 @@ function uploadImage(req, res) {
 
 function removeFilesOfUploads(res, file_path, message) {
     fs.unlink(file_path, (err) => {
-        //console.log(message);
         return res.status(200).send({ message: message });
     });
 }

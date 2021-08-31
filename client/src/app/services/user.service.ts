@@ -38,6 +38,7 @@ export class UserService {
     return this._http.post(this.url + 'login', params, {headers: headers});
   }
 
+  // Método que genera el email de contraseña olvidada
   forgotPassword(user: User) {
     let params = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -45,6 +46,7 @@ export class UserService {
     return this._http.put(this.url + 'forgot-password', params, {headers: headers});
   }
 
+  // metodo que restablece la contraseña
   newPassword(user: User, token: string) {
     let params = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -53,6 +55,7 @@ export class UserService {
     return this._http.put(this.url + 'new-password', params, {headers: headers});
   }
 
+  // metodo que cambia la contraseña de un usuario cuando este tiene la sesión iniciada
   changePassword(user: User) {
     let params = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json')

@@ -10,8 +10,7 @@ var md_auth = require('../middlewares/authenticated');
 var multiparty = require('connect-multiparty');
 var md_upload = multiparty({ uploadDir: './uploads/publications' }); // directorio de subida de archivos
 
-
-// cuando vamos a dar de alta algo (guardar datos) siempre utilizamos el metodo post
+// Creamos las rutas para el publication-controller
 api.post('/publication', md_auth.ensureAuth, PublicationController.savePublication);
 api.get('/publications/:page?', md_auth.ensureAuth, PublicationController.getPublications);
 api.get('/publications-user/:user/:page?', md_auth.ensureAuth, PublicationController.getUserPublications);

@@ -8,14 +8,14 @@ var Like = require('../models/like');
 // Guardar un like — me gusta a una publicacion
 function saveLike(req, res) {
 
-    console.log("saving likeeee");
+    //console.log("saving likeeee");
     var params = req.body; // peticion por post
 
     var like = new Like();
     like.user = req.user.sub; // usuario loggeado
     like.publication = params.publication; // id de la publicacion que le gusta
 
-    console.log(like.publication);
+    //console.log(like.publication);
 
     if (like.publication != undefined) {
         // Control de likes duplicados
@@ -43,8 +43,6 @@ function saveLike(req, res) {
 function deleteLike(req, res) {
 
     var userId = req.user.sub; // usuario loggeado
-    // intentar en un futuro pasar el nombre de usuario por la url, y obtener el id de ese usuario
-    // para guardarlo en followId, y así no estar mostrando el id en la barra de búsqueda
 
     var publicationId = req.params.id; // publicacion que le deja de gustar, lo vamos a pasar por la url — peticion delete
 

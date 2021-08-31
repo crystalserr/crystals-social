@@ -53,14 +53,14 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('timeline cargado correctamente');
+    //console.log('timeline cargado correctamente');
     this.getPublications(this.page);
   }
 
   getPublications(page: number, adding = false) {
     this._publicationService.getPublications(this.token, page).subscribe(
       response => {
-        console.log(response);
+        //console.log(response);
         if (response.publications) {
           this.total = response.total_items;
           this.pages = response.pages;
@@ -72,7 +72,7 @@ export class TimelineComponent implements OnInit {
           } else {
             var arrayP = this.publications;
             var arrayNew = response.publications;
-            console.log(arrayNew);
+            //console.log(arrayNew);
 
             this.publications = arrayP.concat(arrayNew);
 
@@ -108,12 +108,12 @@ export class TimelineComponent implements OnInit {
 
   // dar me gusta a una publicación - publication es el id de la publicacion
   likePublication(publication: string) {
-    console.log("liking");
+    //console.log("liking");
     var like = new Like('', this.identity._id, publication);
 
     this._likeService.addLike(this.token, like).subscribe(
       response => {
-        console.log(response);
+        //console.log(response);
         if (!response.like) {
           this.status = 'error';
         } else {
@@ -133,10 +133,10 @@ export class TimelineComponent implements OnInit {
 
   // dejar de gustar una publicación (publication - id de la publicacion)
   dislikePublication(publication: string) {
-    console.log("disliking");
+    //console.log("disliking");
     this._likeService.deleteLike(this.token, publication).subscribe(
       response => {
-        console.log(response);
+        //console.log(response);
         var search = this.liking.indexOf(publication);
         if (search != -1) {
           this.liking.splice(search, 1); // elimino la publicacion del array de me gustas del usuario
@@ -156,7 +156,7 @@ export class TimelineComponent implements OnInit {
 
   showImage(image) {
 
-    console.log(image)
+    //console.log(image)
     $("#ventana-modal").fadeIn();
     this.show = image;
 
@@ -209,7 +209,7 @@ export class TimelineComponent implements OnInit {
       response => {
         localStorage.setItem('stats', JSON.stringify(response));
         this.status = 'success';
-        console.log(response);
+        //console.log(response);
       },
       error => {
         console.log(<any>error);
